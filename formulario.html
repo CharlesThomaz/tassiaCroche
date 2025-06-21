@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Interesse em Cursos de Amigurumi</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, var(--lavender) 0%, var(--soft-purple) 100%); 
+;
+      padding: 2rem;
+      display: flex;
+      justify-content: center;
+      color: #5d3a3a;
+    }
+
+    :root{
+
+      --lavender: #e6d7ff;
+      --soft-purple: #c8a8d8;
+    }
+
+    .form-container {
+      background: white;
+      padding: 2.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(93, 58, 58, 0.1);
+      max-width: 450px;
+      width: 100%;
+      border: 1px solid #f0d6d6;
+    }
+
+    h2 {
+      color: #d45d79;
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-size: 1.8rem;
+    }
+
+    .intro-text {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: #5d3a3a;
+      line-height: 1.5;
+    }
+
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: #5d3a3a;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid #e8c8c8;
+      border-radius: 6px;
+      font-size: 1rem;
+      transition: border 0.3s;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: #d45d79;
+      box-shadow: 0 0 0 2px rgba(212, 93, 121, 0.2);
+    }
+
+    button {
+      width: 100%;
+      padding: 1rem;
+      background-color: #d45d79;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      margin-top: 0.5rem;
+    }
+
+    button:hover {
+      background-color: #b84c67;
+    }
+
+    .msg {
+      margin-top: 1.5rem;
+      padding: 0.8rem;
+      border-radius: 6px;
+      text-align: center;
+      display: none;
+    }
+
+    .success {
+      background-color: #e8f5e9;
+      color: #2e7d32;
+      display: block;
+    }
+
+    .error {
+      background-color: #ffebee;
+      color: #c62828;
+      display: block;
+    }
+
+    .amigurumi-icon {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #d45d79;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="form-container">
+    <div class="amigurumi-icon">🧶</div>
+    <h2>Tenho Interesse nos Cursos de Amigurumi!</h2>
+    <p class="intro-text">Preencha o formulário abaixo para receber informações sobre nossos cursos e promoções especiais!</p>
+
+    <form  id="formInteresseAmigurumi" >
+      <div class="form-group">
+        <label for="nome">Nome Completo*</label>
+        <input type="text" id="nome" placeholder="Seu nome" required />
+      </div>
+
+      <div class="form-group">
+        <label for="email">E-mail*</label>
+        <input type="email" id="email" placeholder="seu@email.com" required />
+      </div>
+
+      <div class="form-group">
+        <label for="telefone">Telefone (WhatsApp)</label>
+        <input type="tel" id="telefone" placeholder="(00) 00000-0000" />
+      </div>
+
+      <div class="form-group">
+        <label for="nivel">Seu nível em amigurumi*</label>
+        <select id="nivel" required>
+          <option value="" disabled selected>Selecione seu nível</option>
+          <option value="iniciante">Iniciante - Nunca fiz amigurumi</option>
+          <option value="basico">Básico - Já fiz alguns pontos simples</option>
+          <option value="intermediario">Intermediário - Consigo fazer peças simples</option>
+          <option value="avancado">Avançado - Faço peças complexas</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="interesse">Qual curso tem mais interesse?</label>
+        <select id="interesse">
+          <option value="" disabled selected>Selecione uma opção</option>
+          <option value="iniciante">Curso para Iniciantes</option>
+          <option value="animais">Amigurumi de Animais</option>
+          <option value="bonecas">Bonecas de Amigurumi</option>
+          <option value="personalizado">Peças Personalizadas</option>
+          <option value="todos">Todos os cursos</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="mensagem">Escreva o nome de um ponto que você conhece?</label>
+        <textarea id="mensagem" placeholder="Escreva aqui..." rows="3"></textarea>
+      </div>
+
+      <button type="submit">Quero saber mais sobre os cursos!</button>
+
+      <div id="mensagemStatus" class="msg"></div>
+    </form>
+  </div>
+
+  <script>
+    const formulario = document.getElementById('formInteresseAmigurumi');
+    const mensagemStatus = document.getElementById('mensagemStatus');
+
+    formulario.addEventListener('submit', function(event) {
+      event.preventDefault();
+      
+      // Validar telefone se foi preenchido
+      const telefone = document.getElementById('telefone').value;
+      if(telefone && !/^\(\d{2}\) \d{5}-\d{4}$/.test(telefone)) {
+        mostrarMensagem('Por favor, insira um telefone válido no formato (00) 00000-0000', 'error');
+        return;
+      }
+
+      const dados = {
+        nome: document.getElementById('nome').value,
+        email: document.getElementById('email').value,
+        telefone: telefone,
+        nivel: document.getElementById('nivel').value,
+        interesse: document.getElementById('interesse').value,
+        mensagem: document.getElementById('mensagem').value,
+        data: new Date().toISOString(),
+        origem: 'Formulário de Interesse em Cursos'
+      };
+
+      // Mostrar loading no botão
+      const btnSubmit = formulario.querySelector('button[type="submit"]');
+      const btnOriginalText = btnSubmit.textContent;
+      btnSubmit.textContent = 'Enviando...';
+      btnSubmit.disabled = true;
+
+      fetch('https://primary-production-91cf.up.railway.app/webhook/formulario', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(dados)
+      })
+      .then(response => {
+        if (response.ok) {
+          mostrarMensagem('Obrigado pelo seu interesse! Em breve entraremos em contato com informações sobre nossos cursos.', 'success');
+          formulario.reset();
+        } else {
+          throw new Error('Erro na resposta do servidor');
+        }
+      })
+      .catch(error => {
+        console.error('Erro:', error);
+        mostrarMensagem('Houve um erro ao enviar seu interesse. Por favor, tente novamente mais tarde.', 'error');
+      })
+      .finally(() => {
+        btnSubmit.textContent = btnOriginalText;
+        btnSubmit.disabled = false;
+      });
+    });
+
+    function mostrarMensagem(texto, tipo) {
+      mensagemStatus.textContent = texto;
+      mensagemStatus.className = 'msg ' + tipo;
+      
+      // Rolagem suave para a mensagem
+      mensagemStatus.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Máscara para telefone
+    document.getElementById('telefone').addEventListener('input', function(e) {
+      let value = e.target.value.replace(/\D/g, '');
+      if (value.length > 0) {
+        value = '(' + value.substring(0, 2) + ') ' + value.substring(2, 7) + '-' + value.substring(7, 11);
+      }
+      e.target.value = value;
+    });
+  </script>
+
+</body>
+</html>

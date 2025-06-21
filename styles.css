@@ -1,0 +1,595 @@
+/* Reset e configurações base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Paleta de cores de ateliê */
+    --cream: #faf7f2;
+    --warm-white: #f8f5f0;
+    --soft-pink: #f4e4e6;
+    --dusty-rose: #d4a5a5;
+    --terracotta: #c17767;
+    --sage-green: #a8b5a0;
+    --warm-brown: #8b6f47;
+    --deep-brown: #5d4e37;
+    --lavender: #e6d7ff;
+    --soft-purple: #c8a8d8;
+    
+    /* Tipografia */
+    --font-handwritten: 'Dancing Script', cursive;
+    --font-casual: 'Caveat', cursive;
+    --font-body: 'Poppins', sans-serif;
+    
+    /* Sombras artesanais */
+    --shadow-soft: 0 4px 20px rgba(139, 111, 71, 0.1);
+    --shadow-medium: 0 8px 30px rgba(139, 111, 71, 0.15);
+    --shadow-strong: 0 12px 40px rgba(139, 111, 71, 0.2);
+}
+
+body {
+    font-family: var(--font-body);
+    line-height: 1.6;
+    color: var(--deep-brown);
+    background: linear-gradient(135deg, var(--cream) 0%, var(--warm-white) 50%, var(--soft-pink) 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Container principal */
+.atelier-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+}
+
+/* Header com estilo de ateliê */
+.atelier-header {
+    position: relative;
+    padding: 2rem 1rem 3rem;
+    background: linear-gradient(135deg, var(--warm-white) 0%, var(--cream) 100%);
+    border-bottom: 3px solid var(--dusty-rose);
+    overflow: hidden;
+}
+
+.wood-texture {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 2px,
+            rgba(139, 111, 71, 0.03) 2px,
+            rgba(139, 111, 71, 0.03) 4px
+        ),
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 20px,
+            rgba(139, 111, 71, 0.02) 20px,
+            rgba(139, 111, 71, 0.02) 22px
+        );
+    pointer-events: none;
+}
+
+.header-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+
+.logo-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.main-logo {
+    max-width: min(280px, 80vw);
+    height: auto;
+    border-radius: 20px;
+    box-shadow: var(--shadow-medium);
+    border: 4px solid var(--warm-white);
+    transition: transform 0.3s ease;
+}
+
+.main-logo:hover {
+    transform: scale(1.02) rotate(1deg);
+}
+
+.atelier-title {
+    font-family: var(--font-handwritten);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700;
+    color: var(--terracotta);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 0;
+}
+
+.atelier-subtitle {
+    font-family: var(--font-casual);
+    font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+    color: var(--warm-brown);
+    font-weight: 500;
+    margin: 0;
+}
+
+/* Seção principal */
+.atelier-main {
+    padding: 2rem 1rem;
+}
+
+/* Introdução do workshop */
+.workshop-intro {
+    text-align: center;
+    margin-bottom: 4rem;
+    padding: 2rem;
+    background: var(--warm-white);
+    border-radius: 25px;
+    box-shadow: var(--shadow-soft);
+    border: 2px solid var(--dusty-rose);
+    position: relative;
+}
+
+.workshop-intro::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 20px;
+    background: var(--dusty-rose);
+    border-radius: 10px;
+}
+
+.handwritten-title {
+    font-family: var(--font-handwritten);
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--terracotta);
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+.intro-text {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: var(--warm-brown);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+/* Galeria do ateliê */
+.atelier-gallery {
+    margin-bottom: 4rem;
+}
+
+.gallery-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.section-title {
+    font-family: var(--font-handwritten);
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    color: var(--terracotta);
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.decorative-line {
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--dusty-rose), var(--terracotta), var(--dusty-rose));
+    margin: 0 auto;
+    border-radius: 2px;
+}
+
+/* Grid de trabalhos */
+.workshop-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(400px, 100%), 1fr));
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.craft-showcase {
+    background: var(--warm-white);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: var(--shadow-medium);
+    border: 3px solid var(--dusty-rose);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.craft-showcase::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, var(--terracotta), var(--dusty-rose), var(--sage-green));
+}
+
+.craft-showcase:hover {
+    transform: translateY(-8px) rotate(1deg);
+    box-shadow: var(--shadow-strong);
+}
+
+.craft-frame {
+    position: relative;
+    margin-bottom: 1.5rem;
+    border-radius: 15px;
+    overflow: hidden;
+    background: var(--cream);
+    padding: 1rem;
+}
+
+.craft-image {
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+    border-radius: 10px;
+    display: block;
+    margin: 0 auto;
+    transition: transform 0.3s ease;
+}
+
+.craft-showcase:hover .craft-image {
+    transform: scale(1.05);
+}
+
+.craft-label {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 3;
+}
+
+.craft-tag {
+    background: var(--terracotta);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    box-shadow: var(--shadow-soft);
+}
+
+.craft-info {
+    text-align: center;
+}
+
+.craft-title {
+    font-family: var(--font-casual);
+    font-size: clamp(1.3rem, 3vw, 1.6rem);
+    color: var(--terracotta);
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.craft-description {
+    color: var(--warm-brown);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+    font-size: clamp(0.9rem, 2vw, 1rem);
+}
+
+.craft-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.detail-item {
+    font-size: 0.9rem;
+    color: var(--sage-green);
+    font-weight: 500;
+}
+
+/* Seção de convite */
+.atelier-invitation {
+    /* background: linear-gradient(135deg, var(--lavender) 0%, var(--soft-purple) 100%); */
+    border-radius: 25px;
+    padding: 3rem 2rem;
+    margin-bottom: 3rem;
+    box-shadow: var(--shadow-medium);
+    border: 3px solid var(--dusty-rose);
+    position: relative;
+    overflow: hidden;
+}
+
+.atelier-invitation::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    animation: float 8s ease-in-out infinite;
+}
+
+.invitation-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.invitation-title {
+    font-family: var(--font-handwritten);
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--deep-brown);
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+}
+
+.invitation-description {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: var(--warm-brown);
+    margin-bottom: 2.5rem;
+    line-height: 1.7;
+}
+
+/* Destaques do curso */
+.course-highlights {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.highlight-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: rgba(255, 255, 255, 0.3);
+    padding: 1.5rem;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.highlight-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+}
+
+.highlight-text {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.highlight-text strong {
+    color: var(--deep-brown);
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+}
+
+.highlight-text span {
+    color: var(--warm-brown);
+    font-size: 0.9rem;
+}
+
+/* Botão CTA */
+.cta-section {
+    text-align: center;
+}
+
+.atelier-cta-button {
+    background: linear-gradient(135deg, var(--terracotta), var(--dusty-rose));
+    color: white;
+    border: none;
+    padding: 1.2rem 2.5rem;
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    box-shadow: var(--shadow-medium);
+    border: 3px solid white;
+    font-family: var(--font-body);
+    position: relative;
+    overflow: hidden;
+}
+
+.atelier-cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.atelier-cta-button:hover::before {
+    left: 100%;
+}
+
+.atelier-cta-button:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: var(--shadow-strong);
+}
+
+.button-decoration {
+    font-size: 1.2rem;
+    animation: sparkle 2s ease-in-out infinite;
+}
+
+.cta-note {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: var(--warm-brown);
+    font-style: italic;
+}
+
+/* Footer */
+.atelier-footer {
+    background: var(--warm-brown);
+    color: var(--cream);
+    padding: 2rem 1rem;
+    text-align: center;
+    border-top: 4px solid var(--terracotta);
+}
+
+.footer-content {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.footer-text {
+    margin-bottom: 1rem;
+    font-size: clamp(0.9rem, 2vw, 1rem);
+}
+
+.footer-decoration {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.decoration-element {
+    font-size: 1.2rem;
+    animation: bounce 2s ease-in-out infinite;
+    animation-delay: calc(var(--i) * 0.2s);
+}
+
+.decoration-element:nth-child(1) { --i: 0; }
+.decoration-element:nth-child(2) { --i: 1; }
+.decoration-element:nth-child(3) { --i: 2; }
+
+/* Animações */
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(2deg); }
+}
+
+@keyframes sparkle {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1.2) rotate(180deg); }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+/* Responsividade aprimorada */
+@media (max-width: 768px) {
+    .atelier-header {
+        padding: 1.5rem 1rem 2rem;
+    }
+    
+    .atelier-main {
+        padding: 1.5rem 0.8rem;
+    }
+    
+    .workshop-intro {
+        padding: 1.5rem;
+        margin-bottom: 3rem;
+    }
+    
+    .workshop-grid {
+        gap: 2rem;
+    }
+    
+    .craft-showcase {
+        padding: 1.5rem;
+    }
+    
+    .atelier-invitation {
+        padding: 2rem 1.5rem;
+    }
+    
+    .course-highlights {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .highlight-item {
+        padding: 1rem;
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .highlight-text {
+        text-align: center;
+    }
+    
+    .atelier-cta-button {
+        padding: 1rem 2rem;
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .atelier-container {
+        padding: 0 0.5rem;
+    }
+    
+    .main-logo {
+        max-width: 220px;
+    }
+    
+    .workshop-intro {
+        padding: 1rem;
+    }
+    
+    .craft-showcase {
+        padding: 1rem;
+    }
+    
+    .craft-frame {
+        padding: 0.5rem;
+    }
+    
+    .atelier-invitation {
+        padding: 1.5rem 1rem;
+    }
+    
+    .highlight-item {
+        padding: 0.8rem;
+    }
+}
+
+/* Melhorias de acessibilidade */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Modo escuro (opcional) */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --cream: #2a2520;
+        --warm-white: #332e28;
+        --soft-pink: #3d3235;
+        --deep-brown: #e8ddd4;
+        --warm-brown: #d4c4a8;
+    }
+}
+
