@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Preço para Amigurumi</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f0ff;
+            color: #333;
+        }
+        h1 {
+            color: #8a2be2;
+            text-align: center;
+        }
+        .calculator {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #8a2be2;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #7b1fa2;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e8f5e9;
+            border-radius: 5px;
+            display: none;
+        }
+        .highlight {
+            font-size: 20px;
+            color: #8a2be2;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Calculadora de Preço para Amigurumi</h1>
+    
+    <div class="calculator">
+        <div class="form-group">
+            <label for="material-cost">Custo dos materiais (fios, enchimento, olhos, etc.):</label>
+            <input type="number" id="material-cost" placeholder="R$" step="0.01" min="0">
+        </div>
+        
+        <div class="form-group">
+            <label for="hours">Tempo de trabalho (em horas):</label>
+            <input type="number" id="hours" placeholder="Horas" min="0" step="0.5">
+        </div>
+        
+        <div class="form-group">
+            <label for="hourly-rate">Valor da sua hora de trabalho:</label>
+            <input type="number" id="hourly-rate" placeholder="R$ por hora" step="0.01" min="0" value="20.00">
+        </div>
+        
+        <div class="form-group">
+            <label for="complexity">Nível de complexidade do boneco:</label>
+            <select id="complexity">
+                <option value="1">Simples (padrões básicos, formas simples)</option>
+                <option value="1.2" selected>Moderado (alguns detalhes, mudanças de cor)</option>
+                <option value="1.5">Complexo (muitos detalhes, peças pequenas, técnicas avançadas)</option>
+                <option value="2">Muito complexo (design original, muitos detalhes, peças múltiplas)</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="profit-margin">Margem de lucro (%):</label>
+            <input type="number" id="profit-margin" placeholder="%" min="0" max="100" step="1" value="30">
+        </div>
+        
+        <button onclick="calculatePrice()">Calcular Preço</button>
+        
+        <div id="result">
+            <h3>Preço sugerido para seu amigurumi:</h3>
+            <p>O valor calculado é: <span class="highlight" id="calculated-price">R$ 0,00</span></p>
+            <p>Este valor inclui:</p>
+            <ul>
+                <li>Custo dos materiais: <span id="materials-display">R$ 0,00</span></li>
+                <li>Mão de obra: <span id="labor-display">R$ 0,00</span></li>
+                <li>Margem de lucro: <span id="profit-display">R$ 0,00</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function calculatePrice() {
+            // Obter valores dos inputs
+            const materialCost = parseFloat(document.getElementById('material-cost').value) || 0;
+            const hours = parseFloat(document.getElementById('hours').value) || 0;
+            const hourlyRate = parseFloat(document.getElementById('hourly-rate').value) || 0;
+            const complexity = parseFloat(document.getElementById('complexity').value);
+            const profitMargin = parseFloat(document.getElementById('profit-margin').value) || 0;
+            
+            // Calcular custo de mão de obra com complexidade
+            const laborCost = hours * hourlyRate * complexity;
+            
+            // Calcular custo total antes do lucro
+            const totalCost = materialCost + laborCost;
+            
+            // Calcular margem de lucro
+            const profit = totalCost * (profitMargin / 100);
+            
+            // Calcular preço final
+            const finalPrice = totalCost + profit;
+            
+            // Exibir resultados
+            document.getElementById('calculated-price').textContent = `R$ ${finalPrice.toFixed(2).replace('.', ',')}`;
+            document.getElementById('materials-display').textContent = `R$ ${materialCost.toFixed(2).replace('.', ',')}`;
+            document.getElementById('labor-display').textContent = `R$ ${laborCost.toFixed(2).replace('.', ',')}`;
+            document.getElementById('profit-display').textContent = `R$ ${profit.toFixed(2).replace('.', ',')} (${profitMargin}%)`;
+            
+            // Mostrar a seção de resultados
+            document.getElementById('result').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
