@@ -593,3 +593,71 @@ body {
     }
 }
 
+
+
+
+.acesso-curso-area {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 40px 0 24px 0;
+      gap: 20px;
+    }
+    .acesso-curso-btn, .acesso-curso-botao {
+      background: #8257e6;
+      color: #fff;
+      border: none;
+      padding: 14px 32px;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background 0.2s;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .acesso-curso-btn:hover, .acesso-curso-botao:hover {
+      background: #6842c2;
+    }
+    .acesso-curso-modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0; top: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(0,0,0,0.5);
+      align-items: center;
+      justify-content: center;
+    }
+    .acesso-curso-modal.ativo {
+      display: flex;
+    }
+    .acesso-curso-modal-conteudo {
+      background: #fff;
+      border-radius: 12px;
+      padding: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      position: relative;
+      width: 95vw;
+      max-width: 420px;
+      height: 600px;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .acesso-curso-fechar {
+      position: absolute;
+      top: 8px;
+      right: 16px;
+      background: transparent;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #8257e6;
+    }
+    .acesso-curso-modal-conteudo iframe {
+      flex: 1;
+      border: none;
+      border-radius: 8px;
+      width: 100%;
+      height: 100%;
+    }

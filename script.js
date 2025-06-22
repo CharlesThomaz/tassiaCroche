@@ -214,3 +214,5 @@ document.head.appendChild(particleStyle);
 // Inicia as partículas flutuantes a cada 3 segundos
 setInterval(createFloatingParticles, 3000);
 
+
+
